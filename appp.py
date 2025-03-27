@@ -16,7 +16,7 @@ st.header("Описательная статистика")
 st.write("**Размер таблицы:**", data.shape)
 st.write("**Типы данных:**")
 st.write(data.dtypes)
-st.write("**Вид_таблицы:**")
+st.write("**Вид таблицы:**")
 st.write(data.head())
 # 2. Графики
 st.header("Графики")
