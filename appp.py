@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Загрузка данных
-@st.cache_data  # Кэширование, чтобы не загружать данные каждый раз
+@st.cache_data
 def load_data():
     url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
     data = pd.read_csv(url)
@@ -50,15 +50,15 @@ st.subheader("Выживаемость по полу")
 fig4, ax4 = plt.subplots()
 sns.countplot(x='Sex', hue='Survived', data=data, ax=ax4)
 
-# Заменяем легенду
-legend_labels = {0: "Мёртв", 1: "Жив"}  # Соответствие значений и подписей
+# Настройка легенды
+legend_labels = {0: "Мёртв", 1: "Жив"}
 handles, _ = ax4.get_legend_handles_labels()
 ax4.legend(handles, [legend_labels[int(label)] for label in _.unique()], 
            title="Статус")
 
 st.pyplot(fig4)
 
-# 3. Интерактивный график (реагирует на ввод)
+# 3. Интерактивный график
 st.subheader("Интерактивный график: Выживаемость по классу билета")
 selected_class = st.selectbox("Выберите класс билета", [1, 2, 3])
 filtered_data = data[data['Pclass'] == selected_class]
