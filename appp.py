@@ -6,7 +6,7 @@ import seaborn as sns
 # Загрузка данных
 @st.cache_data  # Кэширование, чтобы не загружать данные каждый раз
 def load_data():
-    url = "https://web.stanford.edu/class/archive/cs/cs109/cs109.1166/stuff/titanic.csv"
+    url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
     data = pd.read_csv(url)
     return data
 
