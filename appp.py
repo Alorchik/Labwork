@@ -49,6 +49,10 @@ st.pyplot(fig3)
 st.subheader("Выживаемость по полу")
 fig4, ax4 = plt.subplots()
 sns.countplot(x='Sex', hue='Survived', data=data, ax=ax4)
+legend_labels = {0: "Мёртв", 1: "Жив"}  # Соответствие значений и подписей
+handles, _ = ax4.get_legend_handles_labels()
+ax4.legend(handles, [legend_labels[int(label)] for label in _.unique()], 
+           title="Статус")
 st.pyplot(fig4)
 
 # 3. Интерактивный график (реагирует на ввод)
