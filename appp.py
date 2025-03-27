@@ -45,10 +45,23 @@ fig3, ax3 = plt.subplots()
 sns.boxplot(x='Pclass', y='Age', data=data, ax=ax3)
 st.pyplot(fig3)
 
-# График выживаемости по полу
-st.subheader("Выживаемость по полу")
-fig4, ax4 = plt.subplots()
-sns.countplot(x='Sex', hue='Survived', data=data, ax=ax4)
+# График выживаемости по классу билета (countplot)
+st.subheader("Выживаемость по классу билета")
+fig4, ax4 = plt.subplots(figsize=(10, 6))
+sns.countplot(x='Pclass', hue='Survived', data=data, ax=ax4)
+
+# Настройка легенды
+handles, labels = ax4.get_legend_handles_labels()
+ax4.legend(handles, ['Погиб', 'Выжил'], title="Статус")
+ax4.set_xlabel("Класс билета")
+ax4.set_ylabel("Количество пассажиров")
+
+# Добавление аннотаций с процентами
+for p in ax4.patches:
+    height = p.get_height()
+    ax4.text(p.get_x() + p.get_width()/2., height + 3,
+            f'{int(height)}', ha='center')
+
 st.pyplot(fig4)
 
 # 3. Интерактивный график (реагирует на ввод)
