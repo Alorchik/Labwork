@@ -53,7 +53,7 @@ sns.countplot(x='Sex', hue='Survived', data=data, ax=ax4)
 # Настройка легенды
 legend_labels = {0: "Мёртв", 1: "Жив"}
 handles, _ = ax4.get_legend_handles_labels()
-ax4.legend(handles, [legend_labels[int(label)] for label in _.unique()], 
+ax4.legend(handles, [legend_labels[int(label)] for label in labels()], 
            title="Статус")
 
 st.pyplot(fig4)
