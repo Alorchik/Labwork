@@ -13,7 +13,7 @@ def load_data():
 data = load_data()
 
 # Заголовок приложения
-st.title("Дашборд: Анализ выживаемости пассажиров Титаника 🚢")
+st.title("Дашборд: Анализ выживаемости пассажиров Титаника 🗻🚢")
 
 # 1. Описательная статистика
 st.header("1. Описательная статистика")
@@ -46,21 +46,50 @@ sns.boxplot(x='Pclass', y='Age', data=data, ax=ax3)
 st.pyplot(fig3)
 
 # График выживаемости по классу билета (countplot)
-st.subheader("Выживаемость по классу билета")
+st.subheader("3. Анализ выживаемости")
+# Выбор класса билета
+selected_class = st.radio(
+    "Выберите класс для анализа:",
+    [1, 2, 3],
+    horizontal=True
+)
+
+# Фильтрация данных
+class_data = data[data['Pclass'] == selected_class]
+
+# Создание графика
 fig4, ax4 = plt.subplots(figsize=(10, 6))
-sns.countplot(x='Pclass', hue='Survived', data=data, ax=ax4)
+sns.countplot(
+    x='Sex',
+    hue='Survived',
+    data=class_data,
+    ax=ax4,
+    palette=['#ff6b6b', '#51cf66']
+)
 
-# Настройка легенды
-handles, labels = ax4.get_legend_handles_labels()
-ax4.legend(handles, ['Погиб', 'Выжил'], title="Статус")
-ax4.set_xlabel("Класс билета")
+# Настройка графика
+ax4.set_title(f"Выживаемость в {selected_class}-м классе")
+ax4.set_xlabel("Пол")
 ax4.set_ylabel("Количество пассажиров")
+ax4.legend(['Погиб', 'Выжил'])
 
-# Добавление аннотаций с процентами
+# Добавление аннотаций
 for p in ax4.patches:
-    height = p.get_height()
-    ax4.text(p.get_x() + p.get_width()/2., height + 3,
-            f'{int(height)}', ha='center')
+    ax4.annotate(
+        f"{p.get_height()}",
+        (p.get_x() + p.get_width()/2, p.get_height()),
+        ha='center',
+        va='center',
+        xytext=(0, 5),
+        textcoords='offset points'
+    )
+
+# Вывод статистики
+survival_rate = class_data['Survived'].mean()
+st.metric(
+    f"Общая выживаемость в {selected_class}-м классе",
+    f"{survival_rate:.1%}"
+)
 
 st.pyplot(fig4)
 
