@@ -42,13 +42,13 @@ st.pyplot(fig2)
 # Boxplot по возрасту и классу билета
 st.subheader("Распределение возраста по классам билетов")
 fig3, ax3 = plt.subplots()
-sns.boxplot(x='Класс', y='Возраст', data=data, ax=ax3)
+sns.boxplot(x='Pclass', y='age', data=data, ax=ax3)
 st.pyplot(fig3)
 
 # График выживаемости по полу с кастомной легендой
 st.subheader("Выживаемость по полу")
 fig4, ax4 = plt.subplots()
-sns.countplot(x='Пол', hue='Выживание', data=data, ax=ax4)
+sns.countplot(x='Sex', hue='Survived', data=data, ax=ax4)
 st.pyplot(fig4)
 
 # 3. Интерактивный график
