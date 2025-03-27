@@ -51,11 +51,8 @@ fig4, ax4 = plt.subplots()
 sns.countplot(x='Sex', hue='Survived', data=data, ax=ax4)
 
 # Настройка легенды
-legend_labels = {0: "Мёртв", 1: "Жив"}
-handles, _ = ax4.get_legend_handles_labels()
-ax4.legend(handles, [legend_labels[int(label)] for label in labels()], 
-           title="Статус")
-
+handles, labels = ax.get_legend_handles_labels()
+ax.legend(handles, ['Мёртв', 'Жив'], title="Статус")
 st.pyplot(fig4)
 
 # 3. Интерактивный график
