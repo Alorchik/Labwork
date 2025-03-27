@@ -45,14 +45,17 @@ fig3, ax3 = plt.subplots()
 sns.boxplot(x='Pclass', y='Age', data=data, ax=ax3)
 st.pyplot(fig3)
 
-# График выживаемости по полу (столбчатая диаграмма)
+# График выживаемости по полу с кастомной легендой
 st.subheader("Выживаемость по полу")
 fig4, ax4 = plt.subplots()
 sns.countplot(x='Sex', hue='Survived', data=data, ax=ax4)
+
+# Заменяем легенду
 legend_labels = {0: "Мёртв", 1: "Жив"}  # Соответствие значений и подписей
 handles, _ = ax4.get_legend_handles_labels()
 ax4.legend(handles, [legend_labels[int(label)] for label in _.unique()], 
            title="Статус")
+
 st.pyplot(fig4)
 
 # 3. Интерактивный график (реагирует на ввод)
