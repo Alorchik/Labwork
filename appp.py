@@ -21,9 +21,12 @@ st.write(data.head())
 # 2. Графики
 st.header("Графики")
 # Гистограмма возрастов
-st.subheader("Распределение возрастов пассажиров")
+st.subheader("Распределение цен билетов")
 fig1, ax1 = plt.subplots()
-sns.histplot(data['Age'].dropna(), kde=True, ax=ax1)
+sns.histplot(data['Fare'].dropna(), kde=True, ax=ax1)
+ax1.set_title("Гистограмма цен билетов")
+ax1.set_xlabel("Цена билета")
+ax1.set_ylabel("Количество пассажиров")
 st.pyplot(fig1)
 # Круговая диаграмма по классам
 st.subheader("Распределение пассажиров по классам")
