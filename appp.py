@@ -43,6 +43,13 @@ ax2.set_title("Гистограмма возрастов пассажиров")
 ax2.set_xlabel("Возраст")
 ax2.set_ylabel("Количество пассажиров")
 st.pyplot(fig2)
+#Boxplot по полу и классу
+st.subheader("Зависимость пола от цены билета") 
+fig, ax = plt.subplots() 
+sns.boxplot(x='Sex', y='Fare', data=data, ax=ax) 
+ax.set_title("Зависимость пола от цены билета") 
+ax.set_xlabel("Пол") ax.set_ylabel("Цена билета") 
+st.pyplot(fig)
 # Boxplot по возрасту и классу билета
 st.subheader("Распределение возраста по классам билетов")
 fig3, ax3 = plt.subplots()
