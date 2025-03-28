@@ -25,11 +25,12 @@ st.subheader("Распределение возрастов пассажиров
 fig1, ax1 = plt.subplots()
 sns.histplot(data['Age'].dropna(), kde=True, ax=ax1)
 st.pyplot(fig1)
-# Круговая диаграмма по полу
-st.subheader("Соотношение мужчин и женщин")
-gender_counts = data['Sex'].value_counts()
+# Круговая диаграмма по классам
+st.subheader("Распределение пассажиров по классам")
+class_counts = data['Pclass'].value_counts()
 fig2, ax2 = plt.subplots()
-ax2.pie(gender_counts, labels=gender_counts.index, autopct='%1.1f%%')
+ax2.pie(class_counts, labels=class_counts.index, autopct='%1.1f%%', startangle=90)
+ax2.axis('equal')  # Чтобы круг был кругом
 st.pyplot(fig2)
 # Boxplot по возрасту и классу билета
 st.subheader("Распределение возраста по классам билетов")
