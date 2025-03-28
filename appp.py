@@ -35,6 +35,14 @@ fig2, ax2 = plt.subplots()
 ax2.pie(class_counts, labels=class_counts.index, autopct='%1.1f%%', startangle=90)
 ax2.axis('equal')  # Чтобы круг был кругом
 st.pyplot(fig2)
+# Гистограмма возрастов
+st.subheader("Распределение возрастов пассажиров")
+fig2, ax2 = plt.subplots()
+sns.histplot(data['Age'].dropna(), kde=True, ax=ax2)
+ax2.set_title("Гистограмма возрастов пассажиров")
+ax2.set_xlabel("Возраст")
+ax2.set_ylabel("Количество пассажиров")
+st.pyplot(fig2)
 # Boxplot по возрасту и классу билета
 st.subheader("Распределение возраста по классам билетов")
 fig3, ax3 = plt.subplots()
